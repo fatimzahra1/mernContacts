@@ -1,8 +1,20 @@
 const express = require('express')
+const connectDB = require('./config/db')
+
 
 const app = express();
 
-app.get('/', (req, res)=> res.json({msg:'Welcome'}) )
+//Connect databes
+
+connectDB()
+
+// Init middelware
+
+app.use(express.json({extended:false}))
+
+
+
+app.get('/',(req, res)=> res.send('yeah') )
 
 // Define Routes
 
