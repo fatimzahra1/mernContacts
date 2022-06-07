@@ -1,9 +1,21 @@
 import React from 'react'
-import {Link} from 'react-router'
+import Contacts from '../contacts/Contacts'
+import ContactForm from '../contacts/ContactForm'
+import ContactFilter from '../contacts/ContactFilter'
+
 
 function Home() {
   return (
-  <h1>hh</h1>
+ <div className='grid-2'>
+   <div>
+     {/* form */}
+     <ContactForm />
+   </div>
+   <div>
+     <ContactFilter />
+     <Contacts />
+   </div>
+ </div>
   )
 }
 
