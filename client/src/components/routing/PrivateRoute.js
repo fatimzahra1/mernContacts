@@ -31,7 +31,7 @@ function PrivateRoute({ Component}) {
 return (
   <Fragment>
   {
-    isAuthenticated? <Component />:            navigate("/login")
+    isAuthenticated? <Component />:navigate("/login")
 
   }
  

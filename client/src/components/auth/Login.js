@@ -15,6 +15,7 @@ function Login(props) {
   useEffect(() => {
       
       if(isAuthenticated){
+        console.log('riri')
           navigate("/")
       
       } 
