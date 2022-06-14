@@ -32,18 +32,14 @@ const AuthState = (props) =>{
     const loadUser = async () => {
       
         if(localStorage.getItem('token')) {
-         console.log(`my tok in function loaduser is ${localStorage.getItem('token')}`)
         await  setAuthToken(localStorage.getItem('token'))
         }
-        else      {  
-           console.log('in function loaduser and have no ')}
+      
 
       try {
         const res = await axios.get('/api/auth')
         dispatch({ type: USER_LOADED, payload:res.data})
-        console.log(res.data)
       } catch (error) {
-        console.log(error)
        dispatch({ type: AUTH_ERROR})
       }
     }
@@ -69,7 +65,6 @@ const AuthState = (props) =>{
 
        
       } catch (error) {
-        console.log('register failed')
         dispatch({type:REGISTER_FAIL, payload: error.response.data.msg})
       }
     }
@@ -92,7 +87,6 @@ const AuthState = (props) =>{
         await loadUser()
        
       } catch (error) {
-        console.log('register failed')
         dispatch({type:LOGIN_FAIL, payload: error.response.data.msg})
       }
     }

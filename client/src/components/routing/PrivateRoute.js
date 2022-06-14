@@ -1,29 +1,28 @@
 import React, {Fragment, useContext, useEffect} from 'react'
 import AuthContext from '../../context/auth/authContext'
-import {useNavigate} from 'react-router-dom';
+import Login from '../auth/Login';
 
 
 
 function PrivateRoute({ Component}) {
 
 
-  const navigate = useNavigate();
 
   const authContext = useContext(AuthContext)
     const {isAuthenticated} = authContext
   useEffect( () =>{ const fetchContact= async () => {
     if (localStorage.getItem('token')) {
-      console.log(authContext)
-      console.log(`in Home ${localStorage.getItem('token')}`)
      await  authContext.loadUser()
     
     
 
     }
   
-  
+   
   }
   fetchContact()
+  
+ 
     //eslint-disable-next-line
 },[])
 
@@ -31,7 +30,7 @@ function PrivateRoute({ Component}) {
 return (
   <Fragment>
   {
-    isAuthenticated? <Component />:navigate("/login")
+    isAuthenticated? <Component />:<Login />
 
   }
  

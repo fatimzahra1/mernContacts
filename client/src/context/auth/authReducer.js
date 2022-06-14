@@ -20,8 +20,6 @@ const authRreducer = (state, action) =>{
              }
         case REGISTER_SUCCESS :
         case LOGIN_SUCCESS :
-            console.log(localStorage.getItem('token'))
-            console.log('i succ')
          
            return{
                 ...state,
@@ -33,7 +31,6 @@ const authRreducer = (state, action) =>{
         case LOGIN_FAIL:
         case AUTH_ERROR:
         case LOGOUT:
-            console.log(action.payload)
             localStorage.removeItem('token')
             return{
                 ...state,

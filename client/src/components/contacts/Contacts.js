@@ -15,7 +15,6 @@ function Contacts() {
     }, []);
 
     if(contacts !==null &&contacts.length===0 && !loading){
-      console.log('nej')
 
    return (
    <h4>Please add a contact</h4>)
@@ -23,7 +22,6 @@ function Contacts() {
   return (
     <Fragment>
     {contacts !==null && !loading ? ( <TransitionGroup >
-    {console.log(contacts)}
        {(filtered==null)?
 
     

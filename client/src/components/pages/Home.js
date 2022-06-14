@@ -11,8 +11,6 @@ function Home() {
 
   useEffect( () =>{ const fetchContact= async () => {
     if (localStorage.getItem('token')) {
-      console.log(authContext)
-      console.log(`in Home ${localStorage.getItem('token')}`)
      await  authContext.loadUser()
     
 
