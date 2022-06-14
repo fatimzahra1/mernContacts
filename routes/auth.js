@@ -62,7 +62,7 @@ router.post('/',[check('email', 'Please include a valid email').isEmail(),
 
    } catch (error) {
     res.status(500)
-    console.log(err.message)
+    console.log(error.message)
    }
 } )
 

@@ -8,7 +8,10 @@ import {
   REGISTER_FAIL,
   CLEAR_ERRORS,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT
 } from '../types'
 
 
@@ -27,15 +30,21 @@ const AuthState = (props) =>{
     // Load User
 
     const loadUser = async () => {
-        if(localStorage.getItem('token')) {
       
-          setAuthToken(localStorage.getItem('token'))
+        if(localStorage.getItem('token')) {
+         console.log(`my tok in function loaduser is ${localStorage.getItem('token')}`)
+        await  setAuthToken(localStorage.getItem('token'))
         }
+        else      {  
+           console.log('in function loaduser and have no ')}
+
       try {
         const res = await axios.get('/api/auth')
         dispatch({ type: USER_LOADED, payload:res.data})
+        console.log(res.data)
       } catch (error) {
-        dispatch({ type: AUTH_ERROR})
+        console.log(error)
+       dispatch({ type: AUTH_ERROR})
       }
     }
 
@@ -52,9 +61,12 @@ const AuthState = (props) =>{
        
          // We have the proxy aiming to localhost
         const response = await axios.post('/api/users', FormData, config)
-         dispatch({type:REGISTER_SUCCESS, payload: response.data})
-        console.log(localStorage.getItem('token'))
-        loadUser()
+        dispatch({type:REGISTER_SUCCESS, payload: response.data})
+        
+    
+        localStorage.setItem('token', response.data.token)
+        await loadUser()
+
        
       } catch (error) {
         console.log('register failed')
@@ -63,8 +75,33 @@ const AuthState = (props) =>{
     }
 
     // Login User
+    
+    const login = async FormData => {
+      const config = {
+        headers : {
+          'Content-Type': 'application/json'
+        }
+      }
+
+      try {
+       
+         // We have the proxy aiming to localhost
+        const response = await axios.post('/api/auth', FormData, config)
+         dispatch({type:LOGIN_SUCCESS, payload: response.data})
+         localStorage.setItem('token', response.data.token)
+        await loadUser()
+       
+      } catch (error) {
+        console.log('register failed')
+        dispatch({type:LOGIN_FAIL, payload: error.response.data.msg})
+      }
+    }
 
     // Logout
+      
+    const logout = () =>{
+       dispatch({type:LOGOUT})}
+
 
     // Clear Errors
 
@@ -80,7 +117,9 @@ const AuthState = (props) =>{
       user: state.user,
       register,
       clearErrors,
-      loadUser
+      loadUser,
+      login,
+      logout
            }}
        >
       { props.children}

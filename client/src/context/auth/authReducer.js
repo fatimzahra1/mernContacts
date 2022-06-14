@@ -3,32 +3,37 @@ import {
     REGISTER_FAIL,
     CLEAR_ERRORS,
     USER_LOADED,
-    AUTH_ERROR
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT
   } from '../types'
 
-const authRreducer =(state, action) =>{
+const authRreducer = (state, action) =>{
     switch (action.type) {
         case USER_LOADED:
              return {
                  ...state,
+                 isAuthenticated: true,
                  loading: false,
                  user: action.payload
              }
         case REGISTER_SUCCESS :
-            localStorage.setItem('token', action.payload.token)
+        case LOGIN_SUCCESS :
             console.log(localStorage.getItem('token'))
             console.log('i succ')
          
-            return{
+           return{
                 ...state,
                 ...action.payload,
                 isAuthenticated : true,
-                loading:false,
-                token:'lol'
+                loading:false
             }
         case REGISTER_FAIL:
+        case LOGIN_FAIL:
         case AUTH_ERROR:
-            console.log('i failed')
+        case LOGOUT:
+            console.log(action.payload)
             localStorage.removeItem('token')
             return{
                 ...state,
@@ -43,6 +48,8 @@ const authRreducer =(state, action) =>{
                 ...state,
                 errors: null
             }
+
+
         default:
             return state
     }

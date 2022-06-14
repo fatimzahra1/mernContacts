@@ -14,8 +14,10 @@ function Register(props) {
     useEffect(() => {
         
         if(isAuthenticated){
-            navigate("/")
-        }
+           navigate("/")
+
+        } 
+
 
         if(error=== 'User already exists') {
          setAlert(error, 'danger')
