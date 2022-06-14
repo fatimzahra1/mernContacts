@@ -9,17 +9,20 @@ function Home() {
   
   const authContext = useContext(AuthContext)
 
-  useEffect( () =>function fetchContact()  {
+  useEffect( () =>{ const fetchContact= async () => {
     if (localStorage.getItem('token')) {
       console.log(authContext)
       console.log(`in Home ${localStorage.getItem('token')}`)
-      authContext.loadUser()
+     await  authContext.loadUser()
     
 
     }
   
+  
+  }
+  fetchContact()
     //eslint-disable-next-line
-  },[])
+},[])
 
   return (
  <div className='grid-2'>
