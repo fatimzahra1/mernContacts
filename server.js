@@ -27,7 +27,9 @@ app.use('/api/contacts', require('./routes/contacts'))
 //Server static assets in production
 
 
+
 app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')))
+
 
 
 
