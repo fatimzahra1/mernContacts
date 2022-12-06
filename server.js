@@ -28,7 +28,7 @@ app.use('/api/contacts', require('./routes/contacts'))
 
 
 
-app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build',
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'public',
     'index.html')))
 
 
