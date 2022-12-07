@@ -4,7 +4,7 @@
     "description": "Contact Manager App",
     "main": "server.js",
     "scripts": {
-        "start": "npm start --prefix client",
+        "start": "nodemon server.js",
 
 
         "server": "nodemon server.js",
