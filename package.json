@@ -4,7 +4,7 @@
     "description": "Contact Manager App",
     "main": "server.js",
     "scripts": {
-        "start": "nodemon server.js",
+        "start": "concurrently \"npm run server\" \"npm run client \"",
 
 
         "server": "nodemon server.js",
