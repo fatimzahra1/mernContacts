@@ -5,9 +5,7 @@
     "main": "server.js",
     "scripts": {
         "start": "set NODE_ENV==production&& concurrently \"npm run server\" \"npm run client \"",
-
-
-        "server": "nodemon server.js",
+        "server": "node server.js",
         "client": "npm start --prefix client",
         "clientinstall": "npm install --prefix client",
         "dev": "concurrently \"npm run server\" \"npm run client \"",
@@ -17,15 +15,18 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "concurrently": "^7.6.0",
         "bcryptjs": "^2.4.3",
         "config": "^3.3.7",
         "express": "^4.18.1",
         "express-validator": "^6.14.0",
         "jsonwebtoken": "^8.5.1",
-        "mongoose": "^6.3.2"
+        "mongoose": "^6.3.2",
+        "nodemon": "^2.0.16",
+        "react-scripts": "^5.0.1"
     },
     "devDependencies": {
-        "concurrently": "^7.1.0",
+
         "nodemon": "^2.0.16"
     }
 }
