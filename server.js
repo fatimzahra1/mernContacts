@@ -36,6 +36,6 @@ app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build
 
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = 4000 || 5000;
 
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`))
